@@ -10,5 +10,11 @@
   },
   "difficulty_endless": {
     "message": "Endless"
+  },
+  "style_plaintext": {
+    "message": "Plaintext"
+  },
+  "style_discord": {
+    "message": "Discord"
   }
 }

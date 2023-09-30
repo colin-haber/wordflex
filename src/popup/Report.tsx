@@ -3,11 +3,11 @@ import { Game } from "../wordex/Game";
 import { Placeholder } from "./Placeholder";
 import { Difficulty } from "../wordex/Difficulty";
 import { Answer } from "../wordex/Answer";
-class Props {
+type Props = {
   game: Game;
-  mode: "plaintext" | "discord";
+  style: "plaintext" | "discord";
 }
-export function Report({ game, mode }: Props) {
+export function Report({ game, style: mode }: Props) {
   let areWords = game.answers.find((answer) => answer.status != "unanswered");
   let maxWordLength = Math.max(...game.answers.map(answer => answer.word.length));
   let [spoilerLength, setSpoilerLength] = useState(areWords ? maxWordLength : game.hint.length);
@@ -39,29 +39,27 @@ export function Report({ game, mode }: Props) {
     return mode == "discord" ? `||\`${answer.word.padEnd(spoilerLength, "\u00A0")}\`||` : "█".repeat(spoilerLength);
   }
   return (
-    <div className="container placeholder-glow">
-      <div className="row">
-        <div className="col">
-          <Placeholder test={game}>
-            {game.difficulty == "endless"
-              ? <div>Wordex</div>
-              : <div>Wordex {new Date().toISOString().split("T")[0]}</div>
-            }
-          </Placeholder>
-          <Placeholder test={game}>
-            <div>{getDifficultyEmoji(game.difficulty)} {mode == "discord" ? `\`${game.hint}\`` : game.hint}</div>
-          </Placeholder>
-          <Placeholder test={game}>
-            <div>⏱️ {game.duration}</div>
-          </Placeholder>
-          <Placeholder rows={5} test={game}>
-            <div>
-              {game.answers.map((answer, index) => (
-                <div key={index}>{getAnswerEmoji(answer)} {getSpoilerizedWord(answer)}</div>
-              ))}
-            </div>
-          </Placeholder>
-        </div>
+    <div className="row placeholder-glow">
+      <div className="col">
+        <Placeholder test={game}>
+          {game.difficulty == "endless"
+            ? <div>Wordex</div>
+            : <div>Wordex {new Date().toISOString().split("T")[0]}</div>
+          }
+        </Placeholder>
+        <Placeholder test={game}>
+          <div>{getDifficultyEmoji(game.difficulty)} {mode == "discord" ? `\`${game.hint}\`` : game.hint}</div>
+        </Placeholder>
+        <Placeholder test={game}>
+          <div>⏱️ {game.duration}</div>
+        </Placeholder>
+        <Placeholder rows={5} test={game}>
+          <div>
+            {game.answers.map((answer, index) => (
+              <div key={index}>{getAnswerEmoji(answer)} {getSpoilerizedWord(answer)}</div>
+            ))}
+          </div>
+        </Placeholder>
       </div>
     </div>
   );
