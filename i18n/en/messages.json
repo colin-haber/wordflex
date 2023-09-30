@@ -1,0 +1,14 @@
+{
+  "difficulty_easy": {
+    "message": "Easy"
+  },
+  "difficulty_medium": {
+    "message": "Medium"
+  },
+  "difficulty_hard": {
+    "message": "Hard"
+  },
+  "difficulty_endless": {
+    "message": "Endless"
+  }
+}
