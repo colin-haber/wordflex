@@ -2,13 +2,15 @@ import React from "react";
 import icons from "bootstrap-icons/bootstrap-icons.svg";
 type Props = {
   id: string;
+  className?: string;
   width?: number | string;
   height?: number | string;
   fill?: string;
+  style?: React.CSSProperties;
 }
-export function Icon({ id, width = "1em", height = "1em", fill="currentColor" }: Props) {
+export function Icon({ id, className = "bi", width = "1em", height = "1em", fill="currentColor", style={} }: Props) {
   return (
-    <svg className="bi" width={width} height={height} fill={fill}>
+    <svg className={className} width={width} height={height} fill={fill} style={style}>
       <use xlinkHref={`${icons}#${id}`} />
     </svg>
   );

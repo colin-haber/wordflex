@@ -1,6 +1,30 @@
 :root {
   box-sizing: border-box;
-  width: 300px;
-  height: 400px;
   color-scheme: light dark;
+}
+@keyframes icon-fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.bi {
+  display: inline-block;
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+.bi-hide {
+  display: none;
+}
+.bi-fade {
+  animation: {
+    duration: 1s;
+    delay: 4s;
+    direction: normal;
+    fill-mode: both;
+    name: icon-fade;
+    timing-function: ease-out;
+  }
 }

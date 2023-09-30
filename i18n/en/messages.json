@@ -16,5 +16,8 @@
   },
   "style_discord": {
     "message": "Discord"
+  },
+  "action_copy": {
+    "message": "Copy"
   }
 }

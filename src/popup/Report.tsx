@@ -36,7 +36,7 @@ export function Report({ game, style: mode }: Props) {
     return <>{emoji}</>;
   }
   function getSpoilerizedWord(answer: Answer) {
-    return mode == "discord" ? `||\`${answer.word.padEnd(spoilerLength, "\u00A0")}\`||` : "█".repeat(spoilerLength);
+    return mode == "discord" ? <code>||`{answer.word.padEnd(spoilerLength, "\u00A0")}`||</code> : "█".repeat(spoilerLength);
   }
   return (
     <div className="row placeholder-glow">
@@ -48,7 +48,7 @@ export function Report({ game, style: mode }: Props) {
           }
         </Placeholder>
         <Placeholder test={game}>
-          <div>{getDifficultyEmoji(game.difficulty)} {mode == "discord" ? `\`${game.hint}\`` : game.hint}</div>
+          <div>{getDifficultyEmoji(game.difficulty)} {mode == "discord" ? <code>`{game.hint}`</code> : game.hint}</div>
         </Placeholder>
         <Placeholder test={game}>
           <div>⏱️ {game.duration}</div>
