@@ -75,4 +75,7 @@ module.exports = {
     }),
     new SubresourceIntegrity(),
   ],
+  infrastructureLogging: {
+    level: "log",
+  },
 };
