@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "name": "Wordflex",
-  "version": "0.4.0.0",
-  "version_name": "0.4.0",
+  "version": "0.5.0.0",
+  "version_name": "0.5.0",
   "description": "Copy-pastable emoji-based reporting for https://wordex.shadaj.me/.",
   "permissions": [
     "declarativeContent",
