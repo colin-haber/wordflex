@@ -13,6 +13,8 @@
     "bootstrap-icons": "^1.11.1",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
+    "gulp": "^4.0.2",
+    "gulp-zip": "^5.1.0",
     "html-webpack-plugin": "^5.5.3",
     "sass": "^1.68.0",
     "sass-loader": "^13.3.2",
