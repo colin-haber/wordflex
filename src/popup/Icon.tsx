@@ -7,7 +7,7 @@ type Props = {
   height?: number | string;
   fill?: string;
   style?: React.CSSProperties;
-}
+};
 export function Icon({ id, className = "bi", width = "1em", height = "1em", fill="currentColor", style={} }: Props) {
   return (
     <svg className={className} width={width} height={height} fill={fill} style={style}>

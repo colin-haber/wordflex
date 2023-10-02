@@ -6,7 +6,8 @@
   "version_name": "0.3.0",
   "description": "Copy-pastable emoji-based reporting for https://wordex.shadaj.me/.",
   "permissions": [
-    "declarativeContent"
+    "declarativeContent",
+    "storage"
   ],
   "action": {
     "default_icon": {

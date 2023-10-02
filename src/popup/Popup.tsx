@@ -5,23 +5,36 @@ import { Icon } from "./Icon";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 type Props = {
   game: Game;
-}
-export function Popup({ game }: Props) {
+  storage: { [key: string]: any; };
+};
+export function Popup({ game, storage }: Props) {
+  let [isFirstRender, setIsFirstRender] = useState(true);
   let t = chrome.i18n.getMessage;
+  let [style, setStyle] = useState((storage.style || "plaintext") as Style);
+  useEffect(() => {
+    if (!isFirstRender) {
+      chrome.storage.local.set({ style });
+    }
+  }, [style]);
   async function handleCopyClicked(_event: React.MouseEvent<HTMLButtonElement>) {
     let tab = document.querySelector<HTMLDivElement>("#styles div.tab-pane.active");
     await navigator.clipboard.writeText(tab.innerText);
   }
+  useEffect(() => {
+    if (isFirstRender) {
+      setIsFirstRender(false);
+    }
+  });
   return (
     <div className="container-fluid p-0">
       <div className="row my-3">
         <div className="col">
           <ul className="nav nav-tabs flex-nowrap px-3">
             <li className="nav-item">
-              <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#plaintext"><Icon id={"text-left"} /></button>
+              <button className={`nav-link ${style === "plaintext" ? "active" : ""}`} onClick={() => setStyle("plaintext")}><Icon id={"text-left"} /></button>
             </li>
             <li className="nav-item">
-              <button className="nav-link" data-bs-toggle="tab" data-bs-target="#discord"><Icon id={"discord"} /></button>
+              <button className={`nav-link ${style === "discord" ? "active" : ""}`} onClick={() => setStyle("discord")}><Icon id={"discord"} /></button>
             </li>
             <li className="nav-item flex-grow-1 text-end ms-5">
               <button type="button" className="btn btn-primary text-nowrap position-relative" onClick={handleCopyClicked}>
@@ -32,14 +45,7 @@ export function Popup({ game }: Props) {
           </ul>
         </div>
       </div>
-      <div className="tab-content mb-3 px-3" id="styles">
-        <div className="tab-pane show active" id="plaintext">
-          <Report game={game} style={"plaintext"} />
-        </div>
-        <div className="tab-pane" id="discord">
-          <Report game={game} style={"discord"} />
-        </div>
-      </div>
+      <Report game={game} style={style} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import "bootstrap/scss/bootstrap.scss";
-import React from "react";
+import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./action.scss";
 import { Popup } from "./popup/Popup";
@@ -10,9 +10,10 @@ doc.setAttribute("data-bs-theme", theme);
 let el = document.createElement("div");
 el.id = "react";
 let root = createRoot(document.body.appendChild(el));
-(async () => {
-  let [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-  let game = await chrome.tabs.sendMessage<any, Game>(tab.id, {});
-  let report = React.createElement(Popup, { game });
-  root.render(report);
-})();
+chrome.tabs.query({active: true, lastFocusedWindow: true})
+  .then(async ([tab]) => {
+    let game = await chrome.tabs.sendMessage<any, Game>(tab.id, {});
+    let storage = await chrome.storage.local.get(["style"]);
+    let report = React.createElement(Popup, { game, storage });
+    root.render(report);
+  });
