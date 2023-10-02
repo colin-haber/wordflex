@@ -26,10 +26,12 @@ export function Report({ game, style: mode }: Props) {
   }
   function getAnswerEmoji(answer: Answer) {
     let emoji: string;
-    if (answer.status == "answered") {
+    if (answer.status == "correct") {
       emoji = "🟢";
     } else if (answer.status == "skipped") {
-      emoji = "🟡";
+      emoji = "🟠";
+    } else if (answer.status == "incorrect") {
+      emoji = "🔴";
     } else if (answer.status == "unanswered") {
       emoji = "⚪";
     }

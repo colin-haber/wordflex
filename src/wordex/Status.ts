@@ -1,1 +1,1 @@
-export type Status = "answered" | "skipped" | "unanswered";
+export type Status = "correct" | "skipped" | "incorrect" | "unanswered";
