@@ -30,10 +30,10 @@ export function Popup({ game, storage }: Props) {
     }
   });
   return (
-    <div className="container-fluid p-0">
-      <div className="row my-3">
+    <div className="container-fluid p-2">
+      <div className="row mb-2">
         <div className="col">
-          <div className="btn-toolbar px-3 flex-nowrap justify-content-between">
+          <div className="btn-toolbar flex-nowrap justify-content-between">
             <div className="btn-group me-5">
               { Object.entries(styles).map(([s, icon], index) => (
                 <button key={index} className={`btn ${style === s ? "btn-primary" : "btn-outline-primary"}`} onClick={() => setStyle(s as Style)}>{icon}</button>
