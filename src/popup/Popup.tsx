@@ -36,7 +36,7 @@ export function Popup({ game, storage }: Props) {
           <div className="btn-toolbar flex-nowrap justify-content-between">
             <div className="btn-group me-5">
               { Object.entries(styles).map(([s, icon], index) => (
-                <button key={index} className={`btn ${style === s ? "btn-primary" : "btn-outline-primary"}`} onClick={() => setStyle(s as Style)}>{icon}</button>
+                <button key={index} className={`btn ${style === s ? "btn-primary" : "btn-outline-primary"}`} title={t(`style_${s}`)} onClick={() => setStyle(s as Style)}>{icon}</button>
               )) }
             </div>
             <div className="btn-group">
