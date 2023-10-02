@@ -42,7 +42,7 @@ export function Report({ game, style: mode }: Props) {
   }
   return (
     <div className="row mb-3 placeholder-glow">
-      <div className="col">
+      <div className="col" id="report">
         <div className="px-3">
           <Placeholder test={game}>
             {game.difficulty == "endless"

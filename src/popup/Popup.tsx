@@ -17,7 +17,7 @@ export function Popup({ game, storage }: Props) {
     }
   }, [style]);
   async function handleCopyClicked(_event: React.MouseEvent<HTMLButtonElement>) {
-    let tab = document.querySelector<HTMLDivElement>("#styles div.tab-pane.active");
+    let tab = document.querySelector<HTMLDivElement>("div#report");
     await navigator.clipboard.writeText(tab.innerText);
   }
   useEffect(() => {
