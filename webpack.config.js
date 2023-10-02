@@ -3,7 +3,7 @@ const Html = require("html-webpack-plugin");
 const SubresourceIntegrity = require("webpack-subresource-integrity").SubresourceIntegrityPlugin;
 module.exports = {
   mode: "development",
-  devtool: "source-map",
+  devtool: "inline-source-map",
   entry: {
     action: "./src/action.ts",
     background: "./src/background.ts",
