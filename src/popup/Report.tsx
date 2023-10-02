@@ -45,29 +45,28 @@ export function Report({ game, style }: Props) {
     <div className="row placeholder-glow">
       <div className="col">
         <div className="card">
-          <div className="card-header">
-            {t(`style_${style}`)}
-          </div>
-          <div id="report" className="card-body">
-            <Placeholder test={game}>
-              {game.difficulty == "endless"
-                ? <div>Wordex</div>
-                : <div>Wordex {new Date().toISOString().split("T")[0]}</div>
-              }
-            </Placeholder>
-            <Placeholder test={game}>
-              <div>{getDifficultyEmoji(game.difficulty)} {style == "discord" ? <code>`{game.hint}`</code> : game.hint}</div>
-            </Placeholder>
-            <Placeholder test={game}>
-              <div>⏱️ {game.duration}</div>
-            </Placeholder>
-            <Placeholder rows={5} test={game}>
-              <div>
-                {game.answers.map((answer, index) => (
-                  <div key={index}>{getAnswerEmoji(answer)} {getSpoilerizedWord(answer)}</div>
-                ))}
-              </div>
-            </Placeholder>
+          <div className="card-body">
+            <pre className="mb-0" id="report">
+              <Placeholder test={game}>
+                {game.difficulty == "endless"
+                  ? <div>Wordex</div>
+                  : <div>Wordex {new Date().toISOString().split("T")[0]}</div>
+                }
+              </Placeholder>
+              <Placeholder test={game}>
+                <div>{getDifficultyEmoji(game.difficulty)} {style == "discord" ? <code>`{game.hint}`</code> : game.hint}</div>
+              </Placeholder>
+              <Placeholder test={game}>
+                <div>⏱️ {game.duration}</div>
+              </Placeholder>
+              <Placeholder rows={5} test={game}>
+                <div>
+                  {game.answers.map((answer, index) => (
+                    <div key={index}>{getAnswerEmoji(answer)} {getSpoilerizedWord(answer)}</div>
+                  ))}
+                </div>
+              </Placeholder>
+            </pre>
           </div>
         </div>
       </div>
