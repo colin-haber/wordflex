@@ -8,6 +8,10 @@ type Props = {
   storage: { [key: string]: any; };
 };
 export function Popup({ game, storage }: Props) {
+  let styles = {
+    plaintext: (<Icon id={"text-left"} />),
+    discord: (<Icon id={"discord"} />),
+  }
   let [isFirstRender, setIsFirstRender] = useState(true);
   let t = chrome.i18n.getMessage;
   let [style, setStyle] = useState((storage.style || "plaintext") as Style);
@@ -29,20 +33,19 @@ export function Popup({ game, storage }: Props) {
     <div className="container-fluid p-0">
       <div className="row my-3">
         <div className="col">
-          <ul className="nav nav-tabs flex-nowrap px-3">
-            <li className="nav-item">
-              <button className={`nav-link ${style === "plaintext" ? "active" : ""}`} onClick={() => setStyle("plaintext")}><Icon id={"text-left"} /></button>
-            </li>
-            <li className="nav-item">
-              <button className={`nav-link ${style === "discord" ? "active" : ""}`} onClick={() => setStyle("discord")}><Icon id={"discord"} /></button>
-            </li>
-            <li className="nav-item flex-grow-1 text-end ms-5">
+          <div className="btn-toolbar px-3 flex-nowrap justify-content-between">
+            <div className="btn-group me-5">
+              { Object.entries(styles).map(([s, icon], index) => (
+                <button key={index} className={`btn ${style === s ? "btn-primary" : "btn-outline-primary"}`} onClick={() => setStyle(s as Style)}>{icon}</button>
+              )) }
+            </div>
+            <div className="btn-group">
               <button type="button" className="btn btn-primary text-nowrap position-relative" onClick={handleCopyClicked}>
                 <Icon id={"clipboard"} />
                 <> {t("action_copy")}</>
               </button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
       <Report game={game} style={style} />
