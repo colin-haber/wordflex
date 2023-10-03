@@ -1,6 +1,3 @@
-const Copy = require("copy-webpack-plugin");
-const Html = require("html-webpack-plugin");
-const SubresourceIntegrity = require("webpack-subresource-integrity").SubresourceIntegrityPlugin;
 module.exports = {
   mode: "development",
   devtool: "inline-source-map",
@@ -48,34 +45,5 @@ module.exports = {
         loader: "ts-loader",
       },
     ],
-  },
-  plugins: [
-    new Copy({
-      patterns: [
-        {
-          from: "./src/manifest.json",
-          to: "./manifest.json",
-        },
-        {
-          from: "./src/icon.png",
-          to: "./icon-64.png",
-        },
-        {
-          from: "./i18n",
-          to: "./_locales",
-        },
-      ],
-    }),
-    new Html({
-      title: "Wordflex",
-      filename: "action.html",
-      chunks: [
-        "action",
-      ],
-    }),
-    new SubresourceIntegrity(),
-  ],
-  infrastructureLogging: {
-    level: "log",
   },
 };

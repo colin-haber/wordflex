@@ -8,17 +8,14 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"problemMatcher": [
-				"$ts-webpack"
-			]
+			"problemMatcher": []
 		},
 		{
+			"isBackground": true,
 			"type": "npm",
 			"script": "watch",
-			"problemMatcher": [
-				"$ts-webpack-watch"
-			],
-			"isBackground": true,
+			"group": "build",
+			"problemMatcher": [],
 			"runOptions": {
 				"runOn": "folderOpen"
 			}
