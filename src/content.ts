@@ -3,6 +3,7 @@ import { Difficulty } from "./wordex/Difficulty";
 import { Game } from "./wordex/Game";
 import { Status } from "./wordex/Status";
 
+document.documentElement.style.colorScheme = "light dark";
 function getGame(): Game {
   let path = location.pathname.split("/");
   let difficulty = path[path.length - 1] as Difficulty;
