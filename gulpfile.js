@@ -67,7 +67,7 @@ exports.clean = () => {
   ]);
 };
 exports.zip = () => {
-  return gulp.src("dist/*")
+  return gulp.src("dist/**/*")
     .pipe(zip("wordflex.zip"))
     .pipe(gulp.dest("./"));
 };
