@@ -42,7 +42,7 @@ export function Report({ game, style }: Props) {
     return style == "discord" ? <code>||`{answer.word.padEnd(spoilerLength, "\u00A0")}`||</code> : "█".repeat(spoilerLength);
   }
   return (
-    <div className="row placeholder-glow">
+    <div className="row mb-2 px-2 placeholder-glow">
       <div className="col">
         <div className="card">
           <div className="card-body">

@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener(async () => {
         conditions: [
           new chrome.declarativeContent.PageStateMatcher({
             pageUrl: {
-              urlMatches: "https?://wordex.shadaj.me/game/",
+              urlMatches: "^https?://wordex.shadaj.me/",
             }
           }),
         ],

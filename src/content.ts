@@ -1,9 +1,9 @@
+import { Message } from "./Message";
 import { Answer } from "./wordex/Answer";
 import { Difficulty } from "./wordex/Difficulty";
 import { Game } from "./wordex/Game";
 import { Status } from "./wordex/Status";
 
-document.documentElement.style.colorScheme = "light dark";
 function getGame(): Game {
   let path = location.pathname.split("/");
   let difficulty = path[path.length - 1] as Difficulty;
@@ -28,6 +28,26 @@ function getGame(): Game {
 function isGame(): boolean {
   return location.toString().match(/^https:\/\/wordex.shadaj.me\/game\//) !== null;
 }
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  sendResponse(isGame() ? getGame() : undefined);
+chrome.storage.local.get(["colorSchemesEnabled"])
+  .then(storage => {
+    let style = document.documentElement.style;
+    if (storage.colorSchemesEnabled as boolean) {
+      style.colorScheme = "light dark";
+    } else {
+      style.removeProperty("color-scheme");
+    }
+  });
+chrome.runtime.onMessage.addListener((message: Message<null | boolean>, sender, sendResponse) => {
+  console.debug(message);
+  if (message.action == "getGame") {
+    sendResponse(isGame() ? getGame() : null);
+  } else if (message.action == "setColorSchemesEnabled") {
+    let enabled = message.content as boolean;
+    let style = document.documentElement.style;
+    if (enabled) {
+      style.colorScheme = "light dark";
+    } else {
+      style.removeProperty("color-scheme");
+    }
+  }
 });
